@@ -8,3 +8,9 @@ from frappe.model.document import Document
 
 class NNTask(Document):
 	pass
+
+@frappe.whitelist()
+def employee_values_load(naming_series=None):
+    return_values=frappe.db.sql("""select employee_name,hourly_rate from tabEmployee where employee=%s""",naming_series)
+    return return_values
+
