@@ -1,7 +1,7 @@
 {
  "allow_copy": 0, 
  "allow_import": 0, 
- "allow_rename": 0, 
+ "allow_rename": 1, 
  "autoname": "field:task", 
  "creation": "2015-07-04 12:47:55.141306", 
  "custom": 0, 
@@ -24,7 +24,7 @@
    "print_hide": 0, 
    "read_only": 0, 
    "report_hide": 0, 
-   "reqd": 0, 
+   "reqd": 1, 
    "search_index": 0, 
    "set_only_once": 0
   }, 
@@ -211,8 +211,8 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-07-07 18:27:16.244988", 
- "modified_by": "Administrator", 
+ "modified": "2015-07-11 15:28:38.204948", 
+ "modified_by": "Rengaraj", 
  "module": "Planning", 
  "name": "NNTask", 
  "name_case": "", 
@@ -246,7 +246,7 @@
    "print": 1, 
    "read": 1, 
    "report": 1, 
-   "role": "All", 
+   "role": "System Manager", 
    "share": 1, 
    "write": 1
   }
@@ -256,5 +256,5 @@
  "search_fields": "tasklist", 
  "sort_field": "modified", 
  "sort_order": "DESC", 
- "title_field": "tasklist"
+ "title_field": "task"
 }

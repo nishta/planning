@@ -46,6 +46,15 @@
    "options": "members.hourly_rate", 
    "permlevel": 0, 
    "precision": ""
+  }, 
+  {
+   "default": "0", 
+   "fieldname": "close_status", 
+   "fieldtype": "Int", 
+   "label": "Close Status", 
+   "permlevel": 0, 
+   "precision": "", 
+   "read_only": 1
   }
  ], 
  "hide_heading": 0, 
@@ -55,9 +64,9 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 1, 
- "modified": "2015-07-04 16:15:07.564677", 
- "modified_by": "Administrator", 
- "module": "planning", 
+ "modified": "2015-07-11 15:06:32.490693", 
+ "modified_by": "Rengaraj", 
+ "module": "Planning", 
  "name": "NNAssign", 
  "name_case": "", 
  "owner": "Administrator", 

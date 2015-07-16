@@ -14,8 +14,5 @@ def employee_values_load(naming_series=None):
     return_values=frappe.db.sql("""select employee_name,hourly_rate from tabEmployee where employee=%s""",naming_series)
     return return_values
 
-@frappe.whitelist()
-def getTask():
-	return frappe.get_list("NNTask","*")
-	pass
+	
 
