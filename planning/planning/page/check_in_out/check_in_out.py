@@ -8,14 +8,13 @@ def checking_checkout(task=None,check_status=None,name=None):
 	cur_date_time=frappe.utils.data.now ()
 	user_name=frappe.session.user
 	if(task):
-		task=task.replace("~~", " ");
-	if(task):
-		if(check_status=="1"):
+		if(check_status=="0"):
 			doctype="NNTask";
 			#select parent,members,employee_name,parenttype from `tabNNAssign` where parenttype=%s and employee_name=%s",(doctype,user_name)
-			count=frappe.db.sql("select *from `tabNNTask Check In Out` where status=1 and emp_name=%s",user_name);
+			count=frappe.db.sql("select task from `tabNNTask Check In Out` where status=1 and emp_name=%s",user_name);
 			if(count):
-				frappe.msgprint("Please Checkout Other Tasks",raise_exception=1)
+				task=count[0][0]
+				frappe.msgprint("Please Checkout <b>"+ task+"</b> Task",raise_exception=1)
 			else:
 				frappe.get_doc({
 					"doctype":"NNTask Check In Out",
@@ -33,6 +32,8 @@ def checking_checkout(task=None,check_status=None,name=None):
 			 checkin_time=frappe.db.sql("""select check_in from `tabNNTask Check In Out` where name=%s""",name)
 			 if(checkin_time):
 			 	checked_intime=checkin_time[0][0];
+			 else:
+			 	checked_intime=0
 			 time_diff_in_seconds=frappe.utils.data.time_diff_in_seconds(cur_date_time,checked_intime);
 			 #frappe.msgprint(time_diff_in_seconds);
 			 cost_for_seound=(hourly_cost)/3600;

@@ -4,16 +4,63 @@
 
 	<table border="1" width="100%">
 	<tr>
-	<td colspan="6" align="center"><div id="emp_name"></div></td>
+	<td colspan="9" align="center"><H2>{{data[0][4]}}</H2></td>
 	</tr>
 	<tr>
-	<td>S.No</td>
-	<td>Project</td>
-	<td>Milestone</td>
-	<td>Task List</td>
-	<td>Task </td>
-	<td>Status</td>
+	<th>S.No</th>
+	<th>Project</th>
+	<th>Milestone</th>
+	<th>Task List</th>
+	<th>Task </th>
+	<th>Scheduled Time</th>
+	<th>Worked Time</th>
+	<th>Status</td>
+	<th>Close</td>
 	</tr>
-	<div id="rows"></div>
+	<!--
+	{{ here data}}->load js values
+	{% here loop %}->for loop,if condition
+	{%= here data%}load js values by object_name ex:data[i].name
+	{%= __("Stauts")%}load default values
+	-->
+	{% for(i=0;i<data.length;i++){ %}
+		{% if(data[i][5]==0) { %}
+		<tr>
+	{% }else{ %}
+		<tr style="background:#ffff00;">
+	{% } %}
+	<td>{{ i+1 }}</td>
+	<td>{{ data[i][0] }}</td>
+	<td>{{ data[i][1] }}</td>
+	<td>{{ data[i][2] }}</td>
+	<td>{{ data[i][3] }} </td>
+	<td>{{ data[i][7] }}</td>
+	<td>{{ data[i][8] }}</td>
+	
+	<td>
+	<input type="hidden" value="{%= data[i][3] %},{%= data[i][5] %},{%= data[i][6] %},{%= data[i][9] %}" id="v{%= i %}" />
+
+	{% if(data[i][5]==0) { %}
+		<a href="javascript:void(0)" class="btn btn-sm btn-default pull-right" onclick="check_in_out_status({%= i %})">
+        {%= __("Check In") %}</a>
+	{% }else{ %}
+		<a href="javascript:void(0)" class="btn btn-sm btn-default pull-right" onclick="check_in_out_status({%= i %})">
+        {%= __("Check Out") %}</a>
+	{% } %}
+	</td>
+	
+	<td>
+	{% if(data[i][5]==0) { %}
+		<a href="javascript:void(0)" class="btn btn-sm btn-default pull-right" onclick="close_task({%= i %})">
+        {%= __("Close") %}</a>
+        {% }else{ %}
+        <a href="javascript:void(0)" class="btn btn-sm btn-default pull-right" >
+        {%= __("Working") %}</a>
+        {% } %}
+	</td>
+	</tr>
+	
+	{% } %}
 	</table>
-</div>
+</div> 
+<script type="text/javascript"></script>
