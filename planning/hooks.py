@@ -110,3 +110,5 @@ app_include_css = "assets/css/jquery.switchButton.css"
 # 	"frappe.desk.doctype.event.event.get_events": "planning.event.get_events"
 # }
 
+Fixtures=["NNProject","NNMilestone","NNTasklist","NNTask"]
+
