@@ -12,6 +12,6 @@
  "name": "Closed Task List", 
  "owner": "Administrator", 
  "ref_doctype": "NNTask", 
- "report_name": "Closed Task List", 
+ "report_name": "Task List", 
  "report_type": "Script Report"
 }
