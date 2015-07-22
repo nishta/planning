@@ -13,6 +13,9 @@ app_version = "0.0.1"
 # Includes in <head>
 # ------------------
 
+app_include_js = "assets/js/jquery.switchButton.js"
+app_include_css = "assets/css/jquery.switchButton.css"
+
 # include js, css files in header of desk.html
 # app_include_css = "/assets/planning/css/planning.css"
 # app_include_js = "/assets/planning/js/planning.js"
@@ -106,4 +109,6 @@ app_version = "0.0.1"
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "planning.event.get_events"
 # }
+
+Fixtures=["NNProject","NNMilestone","NNTasklist","NNTask"]
 
