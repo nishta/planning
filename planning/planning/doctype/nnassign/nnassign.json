@@ -41,7 +41,8 @@
   {
    "fieldname": "hourly_rate", 
    "fieldtype": "Data", 
-   "in_list_view": 1, 
+   "hidden": 1, 
+   "in_list_view": 0, 
    "label": "Hourly Rate", 
    "options": "members.hourly_rate", 
    "permlevel": 0, 
@@ -64,7 +65,7 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 1, 
- "modified": "2015-07-11 15:06:32.490693", 
+ "modified": "2015-07-23 09:47:09.617540", 
  "modified_by": "Rengaraj", 
  "module": "Planning", 
  "name": "NNAssign", 

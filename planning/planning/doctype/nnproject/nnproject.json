@@ -92,13 +92,13 @@
   }, 
   {
    "allow_on_submit": 0, 
-   "fieldname": "start_date", 
+   "fieldname": "expected_start_date", 
    "fieldtype": "Date", 
    "hidden": 0, 
    "ignore_user_permissions": 0, 
    "in_filter": 0, 
    "in_list_view": 0, 
-   "label": "Start Date", 
+   "label": "Expected Start Date", 
    "no_copy": 0, 
    "permlevel": 0, 
    "precision": "", 
@@ -112,13 +112,13 @@
   }, 
   {
    "allow_on_submit": 0, 
-   "fieldname": "end_date", 
+   "fieldname": "expected_end_date", 
    "fieldtype": "Date", 
    "hidden": 0, 
    "ignore_user_permissions": 0, 
    "in_filter": 0, 
    "in_list_view": 0, 
-   "label": "End Date", 
+   "label": "Expected End Date", 
    "no_copy": 0, 
    "permlevel": 0, 
    "precision": "", 
@@ -129,6 +129,20 @@
    "search_index": 0, 
    "set_only_once": 0, 
    "unique": 0
+  }, 
+  {
+   "fieldname": "actual_start_date", 
+   "fieldtype": "Date", 
+   "label": "Actual Start Date", 
+   "permlevel": 0, 
+   "precision": ""
+  }, 
+  {
+   "fieldname": "actual_end_date", 
+   "fieldtype": "Data", 
+   "label": "Actual End Date", 
+   "permlevel": 0, 
+   "precision": ""
   }, 
   {
    "allow_on_submit": 0, 
@@ -180,6 +194,15 @@
    "permlevel": 0, 
    "precision": "", 
    "search_index": 1
+  }, 
+  {
+   "default": "0", 
+   "fieldname": "update_status", 
+   "fieldtype": "Int", 
+   "hidden": 1, 
+   "label": "Update Status", 
+   "permlevel": 0, 
+   "precision": ""
   }
  ], 
  "hide_heading": 0, 
@@ -189,8 +212,8 @@
  "is_submittable": 0, 
  "issingle": 0, 
  "istable": 0, 
- "modified": "2015-07-15 13:28:06.417225", 
- "modified_by": "Administrator", 
+ "modified": "2015-07-23 09:45:14.546284", 
+ "modified_by": "Rengaraj", 
  "module": "Planning", 
  "name": "NNProject", 
  "name_case": "", 

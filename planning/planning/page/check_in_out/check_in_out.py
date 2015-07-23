@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 import frappe
 from frappe.utils import getdate, validate_email_add, today
 import datetime
+from planning.planning.myfunction import mail_format_pms,actual_date_update,close_task_update
 
 @frappe.whitelist()
 def checking_checkout(task=None,check_status=None,name=None):
@@ -23,6 +24,7 @@ def checking_checkout(task=None,check_status=None,name=None):
 					"status":1,
 					"emp_name":user_name
 					}).insert(ignore_permissions=True)
+				actual_date_update(task)
 		else:
 			 hourly_rate=frappe.db.sql("""select hourly_rate from tabEmployee where employee_name=%s""",(user_name))
 			 if(hourly_rate):
@@ -100,4 +102,7 @@ def getTask(doctype):
 @frappe.whitelist()
 def close_task(assign_name=None,):
 	frappe.db.sql("""Update `tabNNAssign` set close_status=1 where name=%s""",(assign_name))
+	task=frappe.db.sql("""select parent from tabNNAssign where name=%s""",(assign_name))
+	if task:
+		close_task_update(task)
 	
