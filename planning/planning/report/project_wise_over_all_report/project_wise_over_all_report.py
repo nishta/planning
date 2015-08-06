@@ -38,6 +38,7 @@ def get_task_list(filters):
 	if(select_task):
 		i=1;
 		values="";
+
 		for select_task_list in select_task:
 			sno=i;
 			assign_name=select_task_list[0];
@@ -50,7 +51,7 @@ def get_task_list(filters):
 			else:
 				close_status_show="Closed";
 			conditions_tasks = conditions_tasks_filter_list(filters);
-			conditions_tasks_filter=" where task.task='%s'" % task_name
+			conditions_tasks_filter=" where task.task='%s' and task_list.tasklist=task.tasklist" % task_name
 			conditions_tasks_filter=conditions_tasks_filter+conditions_tasks
 			#frappe.msgprint(conditions_tasks_filter);
 			select_task_list=frappe.db.sql("""select task_list.project as project ,task_list.milestone as milestone,task_list.tasklist as task_list_name,task.duration as duration from `tabNNTasklist` task_list ,`tabNNTask` task """+conditions_tasks_filter)
@@ -62,6 +63,7 @@ def get_task_list(filters):
 			else:
 				project_name="";
 				milestone="";
+				task_list_name=""
 			status="Status";
 			close="Status";
 			status_che=1
@@ -74,6 +76,7 @@ def get_task_list(filters):
 				check_status_name="";
 			#worked_cocuation:
 			total_seconds=0;
+			rate=0
 			working_hours=frappe.db.sql("""select check_in,check_out,rate from `tabNNTask Check In Out` where status=2 and task=%s and emp_name=%s order by creation desc""",(task_name,employee_name))
 			for working_hours_list in working_hours:
 				checkin_times=working_hours_list[0];

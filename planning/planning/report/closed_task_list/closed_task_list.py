@@ -49,7 +49,7 @@ def get_task_list(filters):
 			else:
 				close_status_show="Closed";
 			conditions_tasks = conditions_tasks_filter_list(filters);
-			conditions_tasks_filter=" where task.task='%s'" % task_name
+			conditions_tasks_filter=" where task.task='%s' and task_list.tasklist=task.tasklist" % task_name
 			conditions_tasks_filter=conditions_tasks_filter+conditions_tasks
 			#frappe.msgprint(conditions_tasks_filter);
 			select_task_list=frappe.db.sql("""select task_list.project as project ,task_list.milestone as milestone,task_list.tasklist as task_list_name,task.duration as duration from `tabNNTasklist` task_list ,`tabNNTask` task """+conditions_tasks_filter)

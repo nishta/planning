@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2015, nishta and contributors
 # For license information, please see license.txt
-
 from __future__ import unicode_literals
 import frappe
 from frappe.utils import getdate, validate_email_add, today
 from frappe.model.document import Document
-from planning.planning.myfunction import mail_format_pms
+from planning.planning.myfunction import mail_format_pms,daily_summary_mail
+import datetime
 
 class NNTask(Document):
   
@@ -29,6 +29,15 @@ class NNTask(Document):
     new_naming=str("-")+str(count_zero)+str(max_no_new)
     self.task=self.task+new_naming
     self.name=self.task
+  
+  def validate(self):
+    allocate_to_arr=[]
+    i=1
+    for d in self.assign_to:
+      if d.members in allocate_to_arr:
+        frappe.msgprint("Allocate to "+ str(d.members) +" Already Exists ( Row No : "+ str(i) +")",raise_exception=1)
+      else:
+        allocate_to_arr.append(d.members)
   
   def after_insert(self):
     task_name=self.task

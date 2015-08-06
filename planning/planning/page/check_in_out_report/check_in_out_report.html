@@ -1,0 +1,34 @@
+<div class="CSSTableGenerator">
+	{% for(i=0;i<10 ;i++){ %}
+	<table width="100%">
+		<tr>
+			<td rowspan="2">S.No</td>
+			<td rowspan="2">Date / List of Task (Project)</td>
+			<td colspan="3">Date</td>
+		</tr>
+		<tr>
+
+			<td>Schedule Hour</td>
+			<td>Worked Hour</td>
+			<td>Status</td>
+		</tr>
+		{% for(j=0;j<10 ;j++){ %}
+		<tr>
+			<td>{%=j+1%}</td>
+			<td>Task</td>
+			<td>Schedule Hour</td>
+			<td>Worked Hour</td>
+			<td>Status</td>
+		</tr>
+		{% } %}
+		<tr>
+			<td>&nbsp;</td>
+			<td>Total</td>
+			<td>Total Schedule Hour</td>
+			<td>Total Worked Hour</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr></tr>
+	</table>
+	{% } %}
+</div>

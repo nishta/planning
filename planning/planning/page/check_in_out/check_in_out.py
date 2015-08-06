@@ -15,7 +15,9 @@ def checking_checkout(task=None,check_status=None,name=None):
 			count=frappe.db.sql("select task from `tabNNTask Check In Out` where status=1 and emp_name=%s",user_name);
 			if(count):
 				task=count[0][0]
-				frappe.msgprint("Please Checkout <b>"+ task+"</b> Task",raise_exception=1)
+				
+				frappe.msgprint("Please Checkout <b>"+ task+"</b> Task")
+				return "Not Valid"
 			else:
 				frappe.get_doc({
 					"doctype":"NNTask Check In Out",
@@ -38,7 +40,7 @@ def checking_checkout(task=None,check_status=None,name=None):
 			 	checked_intime=0
 			 time_diff_in_seconds=frappe.utils.data.time_diff_in_seconds(cur_date_time,checked_intime);
 			 #frappe.msgprint(time_diff_in_seconds);
-			 cost_for_seound=(hourly_cost)/3600;
+			 cost_for_seound=float(hourly_cost)/float(3600);
 			 rate=(time_diff_in_seconds)*(cost_for_seound)
 			 #frappe.msgprint(str(rate),raise_exception=1)
 			 frappe.db.sql("""update `tabNNTask Check In Out` set check_out=%s,status=2,hourly_cost=%s,rate=%s where name=%s""",(cur_date_time,hourly_rate,rate,name))
@@ -63,7 +65,7 @@ def getTask(doctype):
 			task_name=select_task_list[1];
 			employee_id=select_task_list[2];
 			employee_name=select_task_list[3];
-			select_task_list=frappe.db.sql("""select task_list.project as project ,task_list.milestone as milestone,task_list.tasklist as task_list_name,task.duration as duration from `tabNNTasklist` task_list ,`tabNNTask` task  where task.name=%s""",(task_name))
+			select_task_list=frappe.db.sql("""select task_list.project as project ,task_list.milestone as milestone,task_list.tasklist as task_list_name,task.duration as duration from `tabNNTasklist` task_list ,`tabNNTask` task  where task.name=%s and task_list.tasklist=task.tasklist""",(task_name))
 			if(select_task_list):
 				project_name=select_task_list[0][0];
 				milestone=select_task_list[0][1];
@@ -103,6 +105,12 @@ def getTask(doctype):
 def close_task(assign_name=None,):
 	frappe.db.sql("""Update `tabNNAssign` set close_status=1 where name=%s""",(assign_name))
 	task=frappe.db.sql("""select parent from tabNNAssign where name=%s""",(assign_name))
+	mode=1;
+	task_name=task
 	if task:
-		close_task_update(task)
+		doctype="NNTask";
+		count=frappe.db.sql("""select *from tabNNAssign where close_status=0 and parent=%s and parenttype=%s""",(task_name,doctype))
+		if not count:
+			close_task_update(task)
+	mail_format_pms(task_name,mode)
 	

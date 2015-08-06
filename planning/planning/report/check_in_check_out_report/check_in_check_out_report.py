@@ -61,7 +61,7 @@ def get_task_list(filters):
 			#frappe.msgprint(worked_time);
 			#worked_time=str(datetime.timedelta(seconds=worked_time))
 		#conditions_tasks_filter=" where task.task='%s'"%
-		conditions_tasks_filter=" where task.task='%s'" % task
+		conditions_tasks_filter=" where task.task='%s' and task_list.tasklist=task.tasklist " % task
 		conditions_tasks_filter=conditions_tasks_filter+conditions_tasks
 		select_task_list=frappe.db.sql("""select task_list.project as project ,task_list.milestone as milestone,task_list.tasklist as task_list_name,task.duration as duration from `tabNNTasklist` task_list ,`tabNNTask` task """+conditions_tasks_filter)
 		if(select_task_list):

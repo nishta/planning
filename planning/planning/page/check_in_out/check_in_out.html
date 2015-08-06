@@ -1,33 +1,29 @@
-<div id="check_grids">
-<br>
-<br>
-
-	<table border="1" width="100%">
-	<tr>
-	<td colspan="9" align="center"><H2>{{data[0][4]}}</H2></td>
-	</tr>
-	<tr>
-	<th>S.No</th>
-	<th>Project</th>
-	<th>Milestone</th>
-	<th>Task List</th>
-	<th>Task </th>
-	<th>Scheduled Time</th>
-	<th>Worked Time</th>
-	<th>Status</td>
-	<th>Close</td>
-	</tr>
-	<!--
+<h2 style="text-align:center;">{{data[0][4]}}</h2>
+<div class="CSSTableGenerator">
+	<table>		
+		<tr>
+			<td>S.No</td>
+			<td>Project</td>
+			<td>Milestone</td>
+			<td>Task List</td>
+			<td>Task</td>
+			<td>Scheduled Time</td>
+			<td>Worked Time</td>
+			<td>Status</td>			
+			<td>Close</td>
+		</tr>
+		<!--
 	{{ here data}}->load js values
 	{% here loop %}->for loop,if condition
 	{%= here data%}load js values by object_name ex:data[i].name
 	{%= __("Stauts")%}load default values
 	-->
-	{% for(i=0;i<data.length;i++){ %}
-		{% if(data[i][5]==0) { %}
+		{% for(i=0;i
+		<data.length ;i++){ %}
+		{% if(data[i][5]==0){ %}
 		<tr>
 	{% }else{ %}
-		<tr style="background:#FFFF99;">
+		<tr style="background:#E4FF80;">
 	{% } %}
 	<td>{{ i+1 }}</td>
 	<td>{{ data[i][0] }}</td>
@@ -36,17 +32,20 @@
 	<td>{{ data[i][3] }} </td>
 	<td>{{ data[i][7] }}</td>
 	<td>{{ data[i][8] }}</td>
-	
-	<td>
+		<td>
+	<div class="onoffswitch">
 	<input type="hidden" value="{%= data[i][3] %},{%= data[i][5] %},{%= data[i][6] %},{%= data[i][9] %}" id="v{%= i %}" />
-
 	{% if(data[i][5]==0) { %}
-		<a href="javascript:void(0)" class="btn btn-sm btn-default pull-right" onclick="check_in_out_status({%= i %})">
-        {%= __("Check In") %}</a>
+	<input type="checkbox" name="checkinout{%= i %}" class="onoffswitch-checkbox" id="checkinout{%= i %}" onchange="check_in_out_status({%= i %})">
+       
 	{% }else{ %}
-		<a href="javascript:void(0)" class="btn btn-sm btn-default pull-right" onclick="check_in_out_status({%= i %})">
-        {%= __("Check Out") %}</a>
-	{% } %}
+	<input type="checkbox" name="checkinout{%= i %}" class="onoffswitch-checkbox" id="checkinout{%= i %}" checked="checked" onchange="check_in_out_status({%= i %})">
+    {% } %}
+     <label class="onoffswitch-label" for="checkinout{%= i %}">
+	<span class="onoffswitch-inner"></span>
+	<span class="onoffswitch-switch"></span>
+	</label>
+	</div> 
 	</td>
 	
 	<td>
@@ -62,5 +61,5 @@
 	
 	{% } %}
 	</table>
-</div> 
-<script type="text/javascript"></script>
+</div>
+

@@ -1,6 +1,4 @@
-
-//frappe.provide("planning.planning");
-frappe.ui.form.on("NNProject","expected_start_date",function(frm)
+frappe.ui.form.on("NNMilestone","expected_start_date",function(frm)
 {   
 if (frm.doc.expected_start_date <get_today() ) 
   {    frm.doc.expected_start_date=""
@@ -10,7 +8,7 @@ if (frm.doc.expected_start_date <get_today() )
   }
 
 });
-frappe.ui.form.on("NNProject","expected_end_date",function(frm)
+frappe.ui.form.on("NNMilestone","expected_end_date",function(frm)
 {   
 if (frm.doc.expected_end_date <get_today() ) 
   {
@@ -27,7 +25,7 @@ if (frm.doc.expected_end_date <get_today() )
   }
 });
 
-frappe.ui.form.on("NNProject","actual_start_date",function(frm)
+frappe.ui.form.on("NNMilestone","actual_start_date",function(frm)
 {   
 if (frm.doc.actual_start_date <get_today() ) 
   {    frm.doc.actual_start_date=""
@@ -37,7 +35,7 @@ if (frm.doc.actual_start_date <get_today() )
   }
 
 });
-frappe.ui.form.on("NNProject","actual_end_date",function(frm)
+frappe.ui.form.on("NNMilestone","actual_end_date",function(frm)
 {   
 if (frm.doc.actual_end_date <get_today() ) 
   {
@@ -53,31 +51,3 @@ if (frm.doc.actual_end_date <get_today() )
         validated = false;
   }
 });
-
-cur_frm.cscript.members = function(doc, cdt, cdn) {
-    var d = locals[cdt][cdn];
-    var members = d.members;
-    d.category = null;
-    
-    // //alet("sdfdsf:");
-    cur_frm.call({
-        method : "employee_values_load",
-        args : {
-            naming_series : members
-        },
-        callback : function(r) {
-            if (!r.exc) {
-                var doclist = frappe.model.sync(r.message);
-                var s = locals[cdt][cdn];
-                employee_name = doclist[0][0];
-                hourly_rate = doclist[0][1];            
-                s.employee_name = employee_name;
-                s.hourly_rate = hourly_rate;
-                cur_frm.refresh_fields();
-            }
-
-        }
-    });
-
-}
-
