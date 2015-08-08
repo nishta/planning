@@ -1,0 +1,18 @@
+{
+ "content": null, 
+ "creation": "2015-07-07 16:11:18.788301", 
+ "docstatus": 0, 
+ "doctype": "Page", 
+ "icon": "Check In Out", 
+ "modified": "2015-07-10 10:43:27.105739", 
+ "modified_by": "Administrator", 
+ "module": "Planning", 
+ "name": "check-in-out", 
+ "owner": "Administrator", 
+ "page_name": "Check In Out", 
+ "roles": [], 
+ "script": null, 
+ "standard": "Yes", 
+ "style": null, 
+ "title": "Check In Out"
+}
